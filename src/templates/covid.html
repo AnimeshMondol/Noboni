@@ -1,0 +1,398 @@
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome To Noboni</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-fade fixed-top">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img class="img-fluid mx-auto d-block" src="{% static 'logo/noboni.jpg' %}" height="70" width="60" ; alt="noboni logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Covid</a>
+          </li>
+        </ul>
+  	<button><a href="{% url 'login' %}">Login</a></button>
+      </div>
+    </nav>
+</head>
+<body>
+    <main>
+      <br><br><br><br>
+      <div class="stats">
+        <div class="latest-report">
+          <div class="country">
+            <div class="name">Loading...</div>
+            <div class="change-country">change</div>
+            <div class="search-country hide">
+              <div class="search-box">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search Country..."
+                />
+                <img class="close" src="{% static 'logo/close.svg' %}" alt="" />
+              </div>
+              <div class="country-list"></div>
+            </div>
+          </div>
+          <div class="total-cases">
+            <div class="title">Total Cases</div>
+            <div class="value">0</div>
+            <div class="new-value">+0</div>
+          </div>
+          <div class="recovered">
+            <div class="title">Recovered</div>
+            <div class="value">0</div>
+            <div class="new-value">+0</div>
+          </div>
+          <div class="deaths">
+            <div class="title">Deaths</div>
+            <div class="value">0</div>
+            <div class="new-value">+0</div>
+          </div>
+        </div>
+        <br><br><br><br>
+        <div class="chart">
+          <canvas id="axes_line_chart"></canvas>
+        </div>
+      </div>
+    </main>
+  </body>
+  <br><br>
+ <footer class="footer"> 
+      <div class="container-fluid bg-primary">
+        <div class="row">
+          <div class="col-xs-6 col-md-4 left">
+    <p>&copy; MySite.com</p>
+        </div>
+          <div class="col-xs-6 col-md-4 left">
+    <a href="#">Terms &amp;Conditions</a>
+    <a href="#">About Us</a> 
+        </div>
+          <div class="col-xs-6 col-md-4 right">
+    <a href="#" class="btn btn-social-icon btn-twitter">
+    <span class="fa fa-twitter"></span>
+  </a>
+   <a href="#" class="btn btn-social-icon btn-facebook">
+    <span class="fa fa-facebook"></span>
+  </a>
+        <a href="#" class="btn btn-social-icon btn-instagram">
+    <span class="fa fa-instagram"></span>
+  </a>
+        </div>
+        </div>
+</div>
+    </footer>
+</html>
+
+<style>
+
+@font-face{
+    font-family: 'Gilroy';
+    src: url(./Gilroy-Regular.woff) format(woff);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gilroy', sans-serif;
+
+}
+html{
+    font-size: 16px;
+    height: auto;
+    position: relative;
+    
+
+}
+.hide{
+    display: none;
+}
+.fadeIn{
+    animation: fade 0.5s ease-in-out;
+}
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+/* ---------------------------------------------- */
+
+/* -------- BG IMAGE -------- */
+.stats{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)) ,url('{% static 'logo/bg.jpg' %}');
+    background-size: cover;
+    align-content: center;
+    margin: 0px;
+    min-height: 100%;
+}
+/* -------- LATEST REPORT -------- */
+.latest-report{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 50px;
+
+    color: #FFF;
+}
+
+.country,
+.total-cases,
+.recovered,
+.deaths{
+    height: 100px;
+}
+
+.name{
+    font-size: 2.2em;
+    color: #be64f1;
+    font-weight: bold;
+}
+
+.change-country{
+    cursor: pointer;
+}
+
+.title{
+    font-size: 1.3em;
+}
+.total-cases .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: blue;
+}
+.recovered .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: #009688;
+}
+.deaths .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: #f44336;
+}
+.new-value{
+    font-size: 1.3em;
+}
+/* -------- CHART -------- */
+.chart{
+    width: 80%;
+    height: 70vh;
+    min-height: 500px;
+
+    margin: 0 auto;
+    padding: 50px 0;
+}
+/* -------- SEARCH COUNTRY -------- */
+.search-country{
+    position: relative;
+    top: 10px;
+}
+.search-box{
+    position: absolute;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 400px;
+    height: 30px;
+
+    background-color: #111;
+
+    z-index: 1;
+}
+.search-box input{
+    width: 360px;
+    height: 25px;
+
+    border: none;
+
+    background-color: transparent;
+    color: #FFF;
+
+    padding-left: 15px;
+
+    font-size: 1.1em;
+}
+.search-box img{
+    width: 20px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.country-list{
+    display: flex;
+
+    position: absolute;
+    top: 30px;
+
+    width: 400px;
+    height: 300px;
+
+    background-color: #111;
+    opacity: 0.9;
+
+    overflow-y: scroll;
+}
+
+.country-list ul{
+    width: 100%;
+}
+
+.country-list ul li{
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+    color: #FFF;
+}
+.country-list ul li:hover{
+    border-left: 1px solid #FFF;
+}
+/* SCROLL BAR */
+.country-list::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .country-list::-webkit-scrollbar-track {
+    background: #111;
+  }
+  
+  /* Handle */
+  .country-list::-webkit-scrollbar-thumb {
+    background: #F1F1F1;
+  }
+  
+  /* Handle on hover */
+  .country-list::-webkit-scrollbar-thumb:hover {
+    background: #FFF;
+  }
+
+@media screen and (max-width: 600px){
+    .latest-report{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+  button {
+  background: rgb(255,221,254);
+  background: linear-gradient(328deg, rgba(255,221,254,1) 0%, rgba(245,188,196,1) 32%, rgba(209,99,226,1) 63%, rgba(245,92,164,1) 100%);
+  border: none;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 6px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  border-radius: 10px;
+}
+button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.navbar-scroll {
+  background-color: rgba(0,123,255,0.4);
+  transition: background-color 0.5s;
+}
+@media(max-width: 768px){
+    .navbar {background-color: black !important; }
+}
+.bg-primary{
+  background-color: #ffe6f2 !important;
+}
+.nav-link{
+  color: black !important;
+}
+/*footer*/
+.footer .container-fluid {
+  height: auto;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+}
+footer .container-fluid a {
+  display: inline-block;
+  color: black;
+  padding-left: 1em;
+ 
+}
+footer .container-fluid p {
+  display: inline-block;
+  color: black;
+  padding-left: 1em;
+  padding-right: 2em;
+}
+@media(max-width: 768px){
+    .col-md-4 {
+      text-align: center;
+      line-height: 30px;
+  }
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+</style>
+
+<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+      integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      language="JavaScript"
+      src="http://www.geoplugin.net/javascript.gp"
+      type="text/javascript"
+    ></script>
+    <script src="{% static 'js home/countries.js' %}"></script>
+    <script src="{% static 'js home/app.js' %}"></script>

@@ -1,0 +1,57 @@
+{% extends 'doctor_blogpost.html' %}
+
+
+{% block content %}
+
+<style>
+	.card{
+		max-width: 700px;
+	}
+	.card-body{
+		padding: 20px;
+	}
+</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+<div class="container">
+	<div class="row">
+
+		<!-- Blog Post -->
+		<div class="card m-auto">
+			<img class="card-img-top" src="{{blog_post.image.url}}">
+			<div class="card-body mt-2 mb-2">
+			  <h2 class="card-title">{{blog_post.title}}</h2>
+			  <p class="card-text">{{blog_post.body}}</p>
+			  <div class="container">
+				<div class="row">
+				<div class="col-lg-7 offset-lg-1">
+					<label for="id_body">Comments</label>
+					<div class="card-body mt-2 mb-2">
+					  <p class="card-text">{{comment_post.comment}}</p>
+					<div class="card-footer text-muted">
+			      Posted on {{comment_post.date_published}} by {{comment_post.author}}
+			      </div>
+			      <form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+					<div class="form-group">	
+					<textarea class="form-control" rows="5" type="text" name="body" id="id_body" placeholder="Write your Comments" required></textarea>
+				</div>
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+			    </form>
+			</div>
+		</div>
+	</div>
+
+			  {% if blog_post.author == request.user %}
+			  	<a href="{% url 'blog:doctorblogedit' blog_post.slug %}" class="btn btn-primary">Update</a>
+			  {% endif %}
+			</div>
+			<div class="card-footer text-muted">
+			  Updated on {{blog_post.date_updated}} by {{blog_post.author}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

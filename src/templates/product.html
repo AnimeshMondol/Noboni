@@ -1,0 +1,451 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>NOBONI USER</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+<div class="header">
+
+ <div class="containerr">
+
+  <div class="navbarr" >
+  <div class="logo">
+    <img src="{% static 'images/Logo.jpg' %}" width="125x">
+
+  </div>
+
+   <nav >
+    <ul id="MenuItems">
+      <li>{% if request.user.is_authenticated %}
+          <a href="{% url 'userprofile' %}"> <b> Hello,{{request.user.username}}</b>
+        {% else %}
+
+        {% endif %}</a></li>
+      <li>
+      <li>
+        <a href="{% url 'index' %}">Home</a>
+      </li>
+      <li>
+        <a href="#">About NOBONI</a>
+      </li>
+      <li>
+        <a href="#">Contat Us</a>
+      </li>
+      <li>
+        <a href="#">Doctors Support</a>
+      </li>
+      <li>
+        <a href="{% url 'blogpost' %}">Blog POST</a>
+      </li>
+      <li>
+        <a href="{% url 'product' %}">Products Page</a>
+      </li>
+      <li>
+        <a href="#">COVID-19 TEST</a>
+      </li>
+      <li>
+        <a href="{% url 'logout' %}">Logout</a>
+      </li>
+
+
+
+    </ul>
+   </nav>
+   <img src="{% static 'images/cart.png' %}" width="30px" height="30px">
+   <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+
+
+<!-- Body -->
+
+  {% block content %}
+
+  {% endblock content %}
+
+</div>
+<!-- End Body -->
+<div class="footer">
+  <div class="containerr">
+    <div class="row">
+      <div class="footer col-1">
+        <h3>NOBONI নবণী</h3>
+          <p>Our mission is to seamlessly elevate women’s health by leveraging the essential need for period tracking.</p>
+      </div>
+
+
+
+      <div class="footer col-4">
+        <h3>Useful Links</h3>
+        <ul>
+          <li>Doctors Support</li>
+          <li>Blog Post</li>
+          <li>Product Page</li>
+          <li>Covid 19 Test</li>
+
+        </ul>
+
+      </div>
+
+          <div class="footer col-4">
+        <h3>Social Media link</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Twitter</li>
+          <li>Instagram</li>
+          <li>YouTube</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+    <hr>
+    <p class="copyright">CSE499A Summer Group 2</p>
+  </div>
+</div>
+
+<!-----------------------js for toggle menu---------------->
+
+<script >
+  var MenuItems = document.getElementById("MenuItems");
+
+  MenuItems.style.maxHeight = "0px";
+
+  function menutoggle(){
+    if(MenuItems.style.maxHeight == "0px")
+    {
+      MenuItems.style.maxHeight = "300px";
+    }
+    else
+    {
+      MenuItems.style.maxHeight = "0px";
+    }
+  }
+</script>
+
+</body>
+
+
+</html>
+<style>
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+.search-bar{
+    max-width: 890px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  form{
+    width: 100%;
+    align-items: center;
+  }
+
+.navbarr{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+
+}
+
+nav{
+  flex: 1;
+  text-align: right;
+}
+
+nav ul{
+  display: inline-block;
+  list-style-type: none;
+}
+
+nav ul li{
+  display: inline-block;
+  margin: 10px;
+}
+a{
+  text-decoration: none;
+  color:#555;
+}
+
+p{
+  color: #555;
+}
+
+.containerr{
+  max-width: 1300px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.row{
+  display:  flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.col-2{
+  flex-basis: 50%;
+  min-width: 300px;
+}
+
+.col-2 img{
+  max-width: 100%;
+  padding: 50px 0;
+}
+
+.col-2 h1{
+  font-size: 50px;
+  line-height: 60px;
+  margin: 25px 0;
+
+}
+
+.btn{
+  display: inline-block;
+  background: #ff523b;
+  color: #fff;
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+  transition: background 0.5s;
+}
+
+.btn: hover{
+  background: #563434
+}
+
+.header{
+  background: radial-gradient(#fff,#ffd6d6)
+}
+
+.header .row{
+ margin-top: 70px;
+
+}
+
+.categories{
+  margin: 70px 0;
+}
+
+.col-3{
+  flex-basis: 30%
+  min-width:250px;
+  margin-bottom: 30px;
+  padding: 10px;
+
+}
+
+.col-3 img{
+  width: auto;
+}
+
+.small-container{
+  max-width: 1080px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+h4{
+  font-weight: auto;
+  font-size: 16;
+
+}
+.info{
+  background: radial-gradient(#fff,#ffd6d6);
+  margin-top:100px;
+  margin-bottom: 100px;
+  padding: 100px 0;
+}
+
+.col-4{
+  flex-basis: 25%;
+  padding:10px;
+  min-width: 200px;
+  margin-bottom: 50px;
+  transition: transform 0.5s;
+}
+
+.col-4 img{
+  width: 100%
+}
+
+.title{
+  text-align: center;
+  margin: 0 auto 80px;
+  position: relative;
+  line-height: 60px;
+  color: #555;
+}
+
+.title::after{
+  content: '';
+  background: #ff523b;
+  width: 80px;
+  height: 5px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+h4{
+  color: #555;
+  font-weight: normal;
+}
+
+.col-4{
+  font-size: 14px;
+}
+
+
+.rating .fa{
+  color: #ff523b;
+}
+
+.col-4:hover{
+  transform: translateY(-5px);
+}
+
+.page-btn{
+  margin: 0 auto 80px;
+}
+
+.page-btn span{
+  display: inline-block;
+  border: 1px solid #ff523b;
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.page-btn span:hover{
+  background: #ff523b;
+  color: #fff;
+
+}
+
+/*--------footer---------------*/
+
+.footer{
+    background: #000;
+  color: #8a8a8a;
+  font-size: 14px;
+  padding: 20px 0 20px;
+
+}
+
+.footer p{
+  color:#8a8a8a;
+   }
+
+.footer h3{
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4{
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+
+.footer-col-1{
+  flex-basis: 30%;
+}
+
+.footer-col-3, .footer-col-4{
+  flex-basis: 12%;
+  text-align: center;
+
+}
+
+ul{
+  list-style-type: none;
+}
+
+.footer hr{
+  border: none;
+  background: #b5b5b5;
+  height: 1px;
+  margin: 20px 0;
+}
+
+.copyright{
+  text-align: center;
+}
+
+.menu-icon{
+  width: 28px;
+  margin-left: 20px;
+  display: none;
+
+}
+
+/*------- media query for menu------------*/
+
+@media only screen and (max-width: 800px){
+
+  nav ul{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #333;
+    width: 100%;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  nav ul li{
+
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  nav ul li a{
+    color: #fff;
+  }
+  .menu-icon{
+    display: block;
+    cursor: pointer;
+  }
+}
+
+/*------- media query for less than 600 screen size------------*/
+
+@media only screen and (max-width: 600px){
+  .row{
+    text-align: center;
+  }
+
+  .col-2, .col-3, .col-4{
+
+    flex-basis: 100%;
+
+  }
+}
+
+</style>

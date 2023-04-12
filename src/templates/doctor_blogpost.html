@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NOBONI DOCTOR PANEL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+ <div class="header">
+
+ <div class="container">
+
+  <div class="navbar">
+  <div class="logo">
+    <img src="{% static 'images/Logo.jpg' %}" width="125x">
+  </div>
+  
+   <nav>
+    <ul>
+      <li>{% if request.user.is_authenticated %}
+          <a href="{% url 'doctorprofile' %}"> <b> Hello,{{request.user.username}}</b>
+        {% else %}
+        
+        {% endif %}</a></li>
+      <li>
+        <a href="{% url 'doctor_index' %}">Home</a>
+      </li>
+      <li>
+        <a href="">Set Up Schedule</a>
+      </li>
+      <li>
+        <a href="{% url 'doctor_blogpost' %}">Blog Post</a>
+      </li>
+      <li>
+        <a href="">Contact Admins</a>
+      </li>
+      <li>
+        <a href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+   </nav>
+
+ </div>
+  
+   
+<div class="search-bar" style="align-content: center;">
+    <form method="get">
+      <input class="form-control"  type="text" name="q" id="id_q" placeholder="Search For Posts ">
+    </form>
+  </div>
+   {% block content %}
+
+  {% endblock content %}
+  
+ </div>
+
+ </div>
+</body>
+</html>
+<style>
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+.search-bar{
+    max-width: 890px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  form{
+    width: 100%;
+    align-items: center;
+  }
+
+
+.navbar{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+
+}
+
+nav{
+  flex: 1;
+  text-align: right;
+}
+
+nav ul{
+  display: inline-block;
+  list-style-type: none;
+}
+
+nav ul li{
+  display: inline-block;
+  margin: 20px;
+}
+a{
+  text-decoration: none;
+  color:#555;
+}
+
+p{
+  color: #555;
+}
+
+.container{
+  max-width: 1300px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.row{
+  display:  flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.col-2{
+  flex-basis: 50%;
+  min-width: 300px;
+}
+
+.col-2 img{
+  max-width: 100%;
+  padding: 50px 0;
+}
+
+.col-2 h1{
+  font-size: 50px;
+  line-height: 60px;
+  margin: 25px 0;
+
+}
+
+.btn{
+  display: inline-block;
+  background: #ff523b;
+  color: #fff;
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+  transition: background 0.5s;
+}
+
+.btn: hover{
+  background: #563434
+}
+
+.header{
+  background: radial-gradient(#fff,#ffd6d6)
+}
+
+.header .row{
+ margin-top: 70px;
+
+}
+</style>

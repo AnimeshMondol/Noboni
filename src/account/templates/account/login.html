@@ -1,0 +1,180 @@
+{% load static %}
+<html>
+<style>
+  .containerr{
+  height: 100%;
+  align-content: center;
+  }
+  .card{
+  height: 550px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 500px;
+  background-color: rgba(0,0,0,0.5) !important;
+  align-content: center;
+  }
+
+  .card-header h3{
+  color: white;
+  }
+
+  .input-group-prepend span{
+  width: 130px;
+  height: auto;
+  background-color: #fad1a5;
+  color: black;
+  border:0 !important;
+  padding: 10px;
+  margin: 0px 0px 10px;
+  }
+  button{
+  color: black !important;
+  background-color: #fad1a5 !important;
+  width: auto;
+  border:0 !important;
+  }
+
+  button:hover{
+  color: black !important;
+  background-color: #acf2b5 !important;
+  border:0 !important;
+  }
+  .form-signin {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+  }
+
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  nav {
+    background: #ffffff00;
+    align-content: center;
+  }
+  .navbar{
+    align-content: center;
+  }
+  h4{
+    text-align: center;
+  }
+  .wrapper {
+  background: #F2F2F2;
+  background: -webkit-radial-gradient(center, #F2F2F2, #FD5DB9);
+  background: -moz-radial-gradient(center, #F2F2F2, #FD5DB9);
+  background: radial-gradient(ellipse at center, #F2F2F2, #FD5DB9);
+  position: relative;
+  height: cover;
+  overflow: hidden;
+}
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<div class="wrapper">
+        <header >
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+        <img class="img-fluid mx-auto d-block" src="{% static 'logo/noboni.jpg' %}" height="80" width="80" ; alt="noboni logo">
+      </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                        <ul class="navbar-nav pull-right">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Covid-19</a>
+                            </li>
+                          </ul>
+                        </div>
+                
+            </nav>
+        </header>
+        <br><br><br>
+<body>
+
+        <div class="containerr">
+  <div class="d-flex justify-content-center h-100">
+<div class="card">
+      <div class="card-header">
+
+    <img class="img-fluid mx-auto d-block" src="{% static 'logo/noboni.jpg' %}" alt="Codignwithmitch logo image" width="72" height="72">
+  
+        <h3 align="center">User Login</h3>
+      </div>
+      <div class="card-body">  
+
+      <form class="form-signin" method="post">{% csrf_token %} 
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Enter Email:</span>
+            </div>
+          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Password:</span>
+            </div>
+          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              </div>
+
+  {% for field in login_form %}
+      <p>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+  {% endfor %}
+  {% if login_form.non_field_errors %}
+    <div style="color: red">
+      <p>{{login_form.non_field_errors}}</p>
+    </div>
+      
+  {% endif %}
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  <br><br>
+  <h4>Doctor Login <a href="{% url 'doctor_login' %}"> Click Here</a></h4>
+  <br>
+  <h4>Don't have an account? <a href="{% url 'register' %}">Register Here </a></h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
